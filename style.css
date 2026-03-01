@@ -80,8 +80,25 @@ a:hover { text-decoration: underline; }
 }
 
 .hero-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 48px;
   padding-top: 80px;
   padding-bottom: 100px;
+}
+
+.hero-text { flex: 1; }
+
+.hero-photo-wrap { flex-shrink: 0; }
+
+.profile-photo {
+  width: 220px;
+  height: 220px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 3px solid var(--border);
+  box-shadow: 0 0 40px rgba(129, 140, 248, 0.15);
 }
 
 .hero h1 {
@@ -156,12 +173,27 @@ a:hover { text-decoration: underline; }
 .pub-list { display: flex; flex-direction: column; gap: 20px; }
 
 .pub-card {
+  display: flex;
+  gap: 20px;
+  align-items: flex-start;
   padding: 24px;
   background: var(--bg);
   border: 1px solid var(--border);
   border-radius: var(--radius);
   transition: border-color 0.2s;
 }
+
+.pub-thumb {
+  width: 130px;
+  height: 90px;
+  object-fit: cover;
+  border-radius: 4px;
+  flex-shrink: 0;
+  border: 1px solid var(--border);
+  background: var(--surface);
+}
+
+.pub-content { flex: 1; min-width: 0; }
 
 .section-alt .pub-card { background: var(--surface); }
 
@@ -310,5 +342,15 @@ a:hover { text-decoration: underline; }
   .talk-event { min-width: unset; }
   .talk-body { flex-direction: column; align-items: flex-start; gap: 4px; }
   .nav-links { gap: 16px; }
-  .hero-inner { padding-top: 60px; padding-bottom: 60px; }
+  .hero-inner {
+    flex-direction: column-reverse;
+    align-items: center;
+    text-align: center;
+    padding-top: 60px;
+    padding-bottom: 60px;
+    gap: 32px;
+  }
+  .hero-links { justify-content: center; }
+  .pub-card { flex-direction: column; }
+  .pub-thumb { width: 100%; height: 160px; }
 }
