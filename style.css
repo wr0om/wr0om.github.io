@@ -846,28 +846,8 @@ a:hover { text-decoration: underline; }
   color: var(--muted);
 }
 
-/* ── Mobile nav toggle ── */
-.nav-toggle {
-  display: none;
-  flex-direction: column;
-  justify-content: space-between;
-  width: 22px;
-  height: 16px;
-  background: none;
-  border: none;
-  cursor: pointer;
-  padding: 0;
-  flex-shrink: 0;
-}
-
-.nav-toggle span {
-  display: block;
-  width: 100%;
-  height: 2px;
-  background: var(--text);
-  border-radius: 2px;
-  transition: all 0.2s ease;
-}
+/* ── Mobile nav toggle (hidden — using scrollable nav instead) ── */
+.nav-toggle { display: none; }
 
 /* ── Responsive ── */
 
@@ -897,36 +877,24 @@ a:hover { text-decoration: underline; }
   .section    { padding: 44px 0; }
 }
 
-/* ≤640px: show hamburger, hide inline nav links */
+/* ≤640px: scrollable nav links */
 @media (max-width: 640px) {
-  .nav-toggle { display: flex; }
+  .nav-inner {
+    gap: 12px;
+  }
 
   .nav-links {
-    display: none;
-    position: absolute;
-    top: calc(56px + env(safe-area-inset-top));
-    left: 0; right: 0;
-    background: rgba(10, 14, 39, 0.97);
-    backdrop-filter: blur(16px);
-    -webkit-backdrop-filter: blur(16px);
-    flex-direction: column;
-    padding: 8px 0 16px;
-    border-bottom: 1px solid var(--border);
-    gap: 0;
+    overflow-x: auto;
+    flex-wrap: nowrap;
+    gap: 20px;
+    /* hide scrollbar visually */
+    scrollbar-width: none;
+    -ms-overflow-style: none;
   }
 
-  .nav--open .nav-links { display: flex; }
+  .nav-links::-webkit-scrollbar { display: none; }
 
-  .nav-links li { padding: 0; }
-
-  .nav-links a {
-    display: block;
-    padding: 14px 24px;
-    font-size: 15px;
-    border-bottom: 1px solid var(--border);
-  }
-
-  .nav-links li:last-child a { border-bottom: none; }
+  .nav-links a { font-size: 13px; white-space: nowrap; }
 }
 
 /* ≤480px: tighter layout */
