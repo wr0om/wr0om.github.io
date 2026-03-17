@@ -19,6 +19,9 @@
   <nav class="nav">
     <div class="nav-inner container">
       <a class="nav-brand" href="#hero">Rom Himelstein</a>
+      <button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
       <ul class="nav-links">
         <li><a href="#about">About</a></li>
         <li><a href="#publications">Publications</a></li>
@@ -485,6 +488,22 @@
           setTimeout(() => copyBtn.classList.remove('copied'), 2000);
         }).catch(() => {
           window.location.href = 'mailto:' + copyBtn.dataset.email;
+        });
+      });
+    }
+
+    // ── 3b. Mobile nav toggle ─────────────────────────────────────────────────
+    const navToggle = document.querySelector('.nav-toggle');
+    const navEl = document.querySelector('.nav');
+    if (navToggle) {
+      navToggle.addEventListener('click', () => {
+        const open = navEl.classList.toggle('nav--open');
+        navToggle.setAttribute('aria-expanded', open);
+      });
+      document.querySelectorAll('.nav-links a').forEach(a => {
+        a.addEventListener('click', () => {
+          navEl.classList.remove('nav--open');
+          navToggle.setAttribute('aria-expanded', false);
         });
       });
     }

@@ -29,7 +29,7 @@ Images live in `images/` (profile photo) and `images/papers/` (paper thumbnails 
 1. `#hero` — name, profile photo, bio, social links
 2. `#about` — research background and affiliations
 3. `#publications` — paper cards (thumbnail + venue + title + authors + links)
-4. `#talks` — talk/appearance entries (some have `// TODO: add talk title` placeholders)
+4. `#talks` — talk/appearance entries
 5. `#contact` — footer with social links
 
 ## Content Conventions
