@@ -746,6 +746,33 @@ a:hover { text-decoration: underline; }
   display: block;
 }
 
+.talk-video-wrap {
+  margin-top: 12px;
+  border-radius: var(--radius);
+  overflow: hidden;
+  background: #000;
+  border: 1px solid var(--glass-bdr);
+}
+
+.talk-video {
+  width: 100%;
+  max-height: 360px;
+  display: block;
+  border-radius: var(--radius);
+}
+
+.talk-video-fallback {
+  display: none;
+  align-items: center;
+  gap: 8px;
+  padding: 16px;
+  color: var(--muted);
+  font-size: 13px;
+}
+
+.talk-video-fallback svg { flex-shrink: 0; color: var(--accent-lt); }
+.talk-video-fallback a { color: var(--accent-lt); }
+
 .talk-title {
   font-size: 15px;
   color: var(--text);

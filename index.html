@@ -359,8 +359,16 @@
           <div class="timeline-card">
             <a href="https://aaai.org/conference/aaai/aaai-26/" class="event-badge badge-conference" target="_blank" rel="noopener">AAAI 2026</a>
             <p class="talk-title">Silenced Biases: The Dark Side LLMs Learned to Refuse</p>
-            <div class="talk-links">
-              <a href="https://underline.io/events/501/sessions/21734/lecture/143406-silenced-biases-the-dark-side-llms-learned-to-refuse" class="tag" target="_blank" rel="noopener">Recording</a>
+            <div class="talk-video-wrap">
+              <video id="aaai-talk-video" class="talk-video" controls playsinline preload="none"
+                poster=""
+                aria-label="AAAI 2026 talk recording: Silenced Biases">
+              </video>
+              <div class="talk-video-fallback">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="24" height="24" aria-hidden="true"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>
+                <span>Video unavailable — </span>
+                <a href="https://underline.io/events/501/sessions/21734/lecture/143406-silenced-biases-the-dark-side-llms-learned-to-refuse" target="_blank" rel="noopener">watch on Underline ↗</a>
+              </div>
             </div>
           </div>
         </article>
@@ -420,8 +428,33 @@
     </div>
   </footer>
 
+  <script src="https://cdn.jsdelivr.net/npm/hls.js@1/dist/hls.min.js"></script>
   <script>
-// ── 2. Animated stat counters (IntersectionObserver) ─────────────────────
+    // ── 0. HLS video player ───────────────────────────────────────────────────
+    (function () {
+      const video = document.getElementById('aaai-talk-video');
+      const wrap  = video && video.closest('.talk-video-wrap');
+      if (!video || !wrap) return;
+      const src = 'https://assets.underline.io/video/87935/file/abr/adc5cb8ed0b1ac42d80fc180664ba2d4.m3u8';
+      const showFallback = () => {
+        video.style.display = 'none';
+        const fb = wrap.querySelector('.talk-video-fallback');
+        if (fb) fb.style.display = 'flex';
+      };
+      if (typeof Hls !== 'undefined' && Hls.isSupported()) {
+        const hls = new Hls({ enableWorker: false });
+        hls.on(Hls.Events.ERROR, (e, data) => { if (data.fatal) showFallback(); });
+        hls.loadSource(src);
+        hls.attachMedia(video);
+      } else if (video.canPlayType('application/vnd.apple.mpegurl')) {
+        video.src = src;
+        video.addEventListener('error', showFallback);
+      } else {
+        showFallback();
+      }
+    })();
+
+    // ── 2. Animated stat counters (IntersectionObserver) ─────────────────────
     const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     const counters = document.querySelectorAll('[data-count]');
     if (prefersReduced) {
