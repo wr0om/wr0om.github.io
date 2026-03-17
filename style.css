@@ -20,7 +20,10 @@
   --shadow-lg:   0 16px 40px rgba(124, 58, 237, 0.15);
 }
 
-html { scroll-behavior: smooth; }
+html {
+  scroll-behavior: smooth;
+  overflow-x: hidden; /* prevent horizontal overflow killing iOS scroll */
+}
 
 body {
   font-family: 'Inter', system-ui, -apple-system, sans-serif;
@@ -28,6 +31,7 @@ body {
   color: var(--text);
   line-height: 1.6;
   font-size: 16px;
+  overflow-x: hidden;
 }
 
 a { color: var(--accent); text-decoration: none; }
@@ -49,6 +53,7 @@ a:hover { text-decoration: underline; }
   backdrop-filter: blur(14px);
   -webkit-backdrop-filter: blur(14px);
   border-bottom: 1px solid var(--border);
+  padding-top: env(safe-area-inset-top);
 }
 
 .nav-inner {
@@ -87,7 +92,7 @@ a:hover { text-decoration: underline; }
   min-height: 100vh;
   display: flex;
   align-items: center;
-  padding-top: 56px;
+  padding-top: calc(56px + env(safe-area-inset-top));
 }
 
 /* Background orbs — pure CSS, no JS */
@@ -899,7 +904,7 @@ a:hover { text-decoration: underline; }
   .nav-links {
     display: none;
     position: absolute;
-    top: 56px;
+    top: calc(56px + env(safe-area-inset-top));
     left: 0; right: 0;
     background: rgba(10, 14, 39, 0.97);
     backdrop-filter: blur(16px);
