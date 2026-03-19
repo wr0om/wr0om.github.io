@@ -66,25 +66,7 @@
 
       <!-- Bento row: stat counters + research tag pills -->
       <div class="hero-bento">
-        <div class="hero-stats">
-          <div class="stat-card">
-            <span class="stat-num" data-count="6">0</span>
-            <span class="stat-label">Papers</span>
-          </div>
-          <div class="stat-card">
-            <span class="stat-num" data-count="7">0</span>
-            <span class="stat-label">Projects</span>
-          </div>
-          <div class="stat-card">
-            <span class="stat-num" data-count="5">0</span>
-            <span class="stat-label">Talks</span>
-          </div>
-          <div class="stat-card">
-            <span class="stat-num" data-count="5">0</span>
-            <span class="stat-label">Venues</span>
-          </div>
-        </div>
-        <div class="hero-tags">
+<div class="hero-tags">
           <span class="research-tag">AI Safety</span>
           <span class="research-tag">LLM Security</span>
           <span class="research-tag">Adversarial ML</span>
@@ -457,26 +439,7 @@
       }
     })();
 
-    // ── 2. Animated stat counters (IntersectionObserver) ─────────────────────
-    const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    const counters = document.querySelectorAll('[data-count]');
-    if (prefersReduced) {
-      counters.forEach(el => { el.textContent = el.dataset.count; });
-    } else {
-      const counterObserver = new IntersectionObserver(entries => {
-        entries.forEach(e => {
-          if (!e.isIntersecting) return;
-          const el = e.target, target = +el.dataset.count;
-          let n = 0;
-          const step = () => { el.textContent = ++n; if (n < target) requestAnimationFrame(step); };
-          requestAnimationFrame(step);
-          counterObserver.unobserve(el);
-        });
-      }, { threshold: 0.5 });
-      counters.forEach(el => counterObserver.observe(el));
-    }
-
-    // ── 3. Copy email ─────────────────────────────────────────────────────────
+    // ── 2. Copy email ─────────────────────────────────────────────────────────
     const copyBtn = document.querySelector('.copy-email');
     if (copyBtn) {
       copyBtn.addEventListener('click', () => {
