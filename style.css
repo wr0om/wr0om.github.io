@@ -721,9 +721,10 @@ a:hover { text-decoration: underline; }
 
 .talk-video {
   width: 100%;
-  max-height: 360px;
+  height: 360px;
   display: block;
   border-radius: var(--radius);
+  border: none;
 }
 
 .talk-video-fallback {
@@ -746,7 +747,18 @@ a:hover { text-decoration: underline; }
   margin-bottom: 10px;
 }
 
-.talk-links { display: flex; gap: 8px; flex-wrap: wrap; }
+.talk-links { display: flex; gap: 8px; flex-wrap: wrap; align-items: center; }
+.talk-note { font-size: 0.75rem; color: var(--text-muted); }
+.talk-date { font-size: 0.78rem; color: var(--text-muted); margin: 2px 0 6px; }
+.passcode-badge {
+  display: inline-flex; align-items: center; gap: 5px;
+  font-size: 0.72rem; font-family: monospace; letter-spacing: 0.03em;
+  color: var(--text-muted);
+  background: rgba(255,255,255,0.04);
+  border: 1px solid var(--glass-bdr);
+  border-radius: 5px;
+  padding: 3px 8px;
+}
 
 /* ── Footer ── */
 .footer {
